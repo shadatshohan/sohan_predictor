@@ -8,5 +8,5 @@ pickleshare==0.7.5
 xgboost==1.4.2
 matplotlib
 seaborn
-click==7.2.0
+click==7.1.1
 
