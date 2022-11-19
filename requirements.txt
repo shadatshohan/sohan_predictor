@@ -7,4 +7,5 @@ pickleshare==0.7.5
 xgboost==1.4.2
 matplotlib==3.6.1
 numpy==1.19.5
+seaborn==0.12.1
 
