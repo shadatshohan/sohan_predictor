@@ -1,4 +1,4 @@
-torch==1.9.0+cpu
+torch
 streamlit==0.85.1
 numpy==1.18.1
 pandas==1.2.5
