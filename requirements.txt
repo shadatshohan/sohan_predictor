@@ -9,4 +9,4 @@ xgboost==1.4.2
 matplotlib
 seaborn
 click==7.1.1
-
+geopandas
