@@ -1,5 +1,3 @@
-
-
 from pathlib import Path
 import base64
 
@@ -605,11 +603,8 @@ def cs_home():
 	
 	st.title('Foster Care Abuse Risk')
 	st.write(''' Situation: Surveys of child welfare practitioners in the foster care space identified the prevention of abuse and neglect of foster children as a key area for research. In the state of Virginia alone, child welfare practitioners receive nearly 38,000 reports of child abuse a year. Of those 38,000, roughly 10,000 investigations are conducted. Of those 10,000, roughly 3,000 are founded investigations. This means that out of 38,000 reports, there is only a 7.8% ratio of founded investigations.
-
 Task: The availability of data related to foster cases enables our team to develop a trend analysis dashboard and triaging model to aid child welfare practitioners in analysing trends and risk factors associated with abuse.
-
 Action: Our team will use public AFCARS data to visualize trends associated with abuse and neglect in foster cases at the national and state level, in addition to the development of a tree-based classification model for approximated triaging of foster cases in a sandbox environment.
-
 Result: The goal of this project is to develop an easy-to-use educational tool that increases the ratio of founded investigations into physical and sexual abuse in the foster care system. 
 ''')
 
@@ -650,3 +645,4 @@ def cs_architecture():
 
 if __name__ == '__main__':
     main()
+
