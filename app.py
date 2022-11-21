@@ -633,8 +633,8 @@ def cs_team():
     st.title('Model Performance')
     st.text("")
     st.text("")
-    picture_jason = Image.open('learning_rate.png')
-    picture_james = Image.open('cls_report.png')
+    picture_jason = Image.open('./model/learning_rate.png')
+    picture_james = Image.open('./model/cls_report.png')
     
 
 
