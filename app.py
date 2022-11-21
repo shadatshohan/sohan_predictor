@@ -1,3 +1,5 @@
+
+
 from pathlib import Path
 import base64
 
@@ -40,7 +42,7 @@ WHITECOLORsmall= '<p style="font-family:Courier; color:White; font-size: 11px;">
 BANNER= '<p style="font-family:Helvetica Neue; color:Teal; font-size: 55px; line-height:25px;text-align: center;"><b>Foster Care Abuse Risk</b></p>'
 BANNERsmall= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: center;">Risk Assesments</p>'
 BANNERleft= '<p style="font-family:Helvetica Neue; color:Teal; font-size: 55px; line-height:25px;text-align: left;"><b>Foster Care Abuse Risk</b></p>'
-BANNERleftsmall= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: left;">Love. Heal. Respect. Cherish</p>'
+BANNERleftsmall= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: left;">Training wit XGBoost</p>'
 SIDEBARHEADING= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: left;"><b>Foster Care Abuse Risk</b></p>'
 
 @st.cache(allow_output_mutation=True)
@@ -84,7 +86,7 @@ def main():
     	cs_journey()
     elif my_page == 'Architecture':
     	cs_architecture()
-    elif my_page == 'Team':
+    elif my_page == 'Performance':
     	cs_team()
     return None
 
@@ -108,7 +110,7 @@ def cs_sidebar():
 #	st.write(BANNERsmall,unsafe_allow_html=True) 
 
 
-	mypage = st.sidebar.radio(' ', ['Home', 'Risk Assesment'])
+	mypage = st.sidebar.radio(' ', ['Home', 'Risk Assesment', 'Performance'])
 
 	st.sidebar.title('')
 	st.sidebar.title('')
@@ -131,7 +133,7 @@ def cs_body():
     st.write(BANNERleft,unsafe_allow_html=True) 
     st.write(BANNERleftsmall,unsafe_allow_html=True) 
 
-    col1, col2, col3 = st.beta_columns(3)
+    col1, col2, col3 = st.columns(3)
 
     placed_before = 'Select one'
     num_prev_placements = 0
@@ -493,7 +495,7 @@ def cs_body():
             providers = st.beta_container()
             
             with providers:
-                provcols =  st.beta_columns(3)
+                provcols =  st.columns(3)
                 button_dict1 = {}
                 button_dict2 = {}
                 button_dict3 = {}
@@ -603,8 +605,11 @@ def cs_home():
 	
 	st.title('Foster Care Abuse Risk')
 	st.write(''' Situation: Surveys of child welfare practitioners in the foster care space identified the prevention of abuse and neglect of foster children as a key area for research. In the state of Virginia alone, child welfare practitioners receive nearly 38,000 reports of child abuse a year. Of those 38,000, roughly 10,000 investigations are conducted. Of those 10,000, roughly 3,000 are founded investigations. This means that out of 38,000 reports, there is only a 7.8% ratio of founded investigations.
+
 Task: The availability of data related to foster cases enables our team to develop a trend analysis dashboard and triaging model to aid child welfare practitioners in analysing trends and risk factors associated with abuse.
+
 Action: Our team will use public AFCARS data to visualize trends associated with abuse and neglect in foster cases at the national and state level, in addition to the development of a tree-based classification model for approximated triaging of foster cases in a sandbox environment.
+
 Result: The goal of this project is to develop an easy-to-use educational tool that increases the ratio of founded investigations into physical and sexual abuse in the foster care system. 
 ''')
 
@@ -617,8 +622,39 @@ def cs_architecture():
     st.title('E2E Pipilines and Models Specifications')
     st.text("")
     product1 = st.beta_container()
-    product2, product3 =  st.beta_columns(2)
-    product4, product5 = st.beta_columns(2)
+    product2, product3 =  st.columns(2)
+    product4, product5 = st.columns(2)
+    
+def cs_team():
+    st.write(BANNERleft,unsafe_allow_html=True) 
+    st.write(BANNERleftsmall,unsafe_allow_html=True) 
+
+    st.session_state['resetter'] = False
+    st.title('Model Performance')
+    st.text("")
+    st.text("")
+    picture_jason = Image.open('learning_rate.png')
+    picture_james = Image.open('cls_report.png')
+    
+
+
+    col1, col2, col3 = st.columns(3)
+
+    col1.image(picture_jason, width = 300)
+    col1.write('<div style="text-align: left"> <b> Learning Rate </b> </div>', unsafe_allow_html = True)
+    col1.write('<div style="text-align: left"> Train and Test Loss </div>', unsafe_allow_html = True)
+    col1.write('<div style="text-align: left"> <b> Risk Assesment </b> </div>', unsafe_allow_html = True)
+    col1.text("")
+    col1.text("")
+    col1.text("")
+    
+    col2.image(picture_james, width = 300)
+    col2.write('<div style="text-align: left"> <b> F1 Recall Precision </b> </div>', unsafe_allow_html = True)
+    col2.write('<div style="text-align: left"> Reports </div>', unsafe_allow_html = True)
+    col2.write('<div style="text-align: left"> <b> performance in metrics </b> </div>', unsafe_allow_html = True)
+    col2.text("")
+    col2.text("")
+    col2.text("")
 
     
 
@@ -645,4 +681,3 @@ def cs_architecture():
 
 if __name__ == '__main__':
     main()
-
