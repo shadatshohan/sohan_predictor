@@ -62,7 +62,7 @@ vis_link_two = ''' <div class='tableauPlaceholder' id='viz1669352278204' style='
 v_3 = '''<div class='tableauPlaceholder' id='viz1669354708856' style='position: relative'><noscript><a href='#'><img alt=' Neglect Ratio Cases Heatmap ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;FosterCareNeglectHeatmap-UCBerkeleyMIDSCapstone&#47;HeatmapNumberNeglectcasesMap2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='FosterCareNeglectHeatmap-UCBerkeleyMIDSCapstone&#47;HeatmapNumberNeglectcasesMap2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;FosterCareNeglectHeatmap-UCBerkeleyMIDSCapstone&#47;HeatmapNumberNeglectcasesMap2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes%5C' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1669354708856');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> '''
 v4 = '''<div class='tableauPlaceholder' id='viz1669354994885' style='position: relative'><noscript><a href='#'><img alt='Ratio of Foster Cases Compared To Population ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ra&#47;RatioofFosterCasesComparedtoPopulationHeatmap-UCBerkeleyMIDSCapstone&#47;RatioofFosterCasesComparedToPopulation&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='RatioofFosterCasesComparedtoPopulationHeatmap-UCBerkeleyMIDSCapstone&#47;RatioofFosterCasesComparedToPopulation' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ra&#47;RatioofFosterCasesComparedtoPopulationHeatmap-UCBerkeleyMIDSCapstone&#47;RatioofFosterCasesComparedToPopulation&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes%5C' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1669354994885');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''
 
-st.title('FUSA Foster Care Risk Analysis Dashboard')
+st.title('USA Foster Care Risk Analysis Dashboard')
 components.html(vis_link_one, width=1400, height=600, scrolling=True)
 st.write('Visual one')
 st.write(''' **Situation:** Surveys of child welfare practitioners in the foster care space identified the prevention of abuse and neglect of foster children as a key area for research. In the state of Virginia alone, child welfare practitioners receive nearly 38,000 reports of child abuse a year. Of those 38,000, roughly 10,000 investigations are conducted. Of those 10,000, roughly 3,000 are founded investigations. This means that out of 38,000 reports, there is only a 7.8% ratio of founded investigations.
@@ -649,15 +649,11 @@ def cs_architecture():
     product4, product5 = st.columns(2)
     
 def cs_performance():
-    st.write(BANNERleft,unsafe_allow_html=True) 
-    st.write(BANNERleftsmall,unsafe_allow_html=True) 
-
-    st.session_state['resetter'] = False
     st.title('Model Performance')
     st.text("")
     st.text("")
-    picture_jason = Image.open('learning_rate.png')
-    picture_james = Image.open('cls_report.png')
+    picture_jason = Image.open('learning_rate.PNG')
+    picture_james = Image.open('cls_report.PNG')
     
 
 
