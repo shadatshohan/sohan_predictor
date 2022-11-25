@@ -20,7 +20,7 @@ from altair.vegalite.v4.schema.channels import X
 import altair as alt
 import geopandas as gpd
 from PIL import Image
-
+import streamlit.components.v1 as components
 # Initial page config
 
 st.set_page_config(
@@ -42,9 +42,43 @@ WHITECOLORsmall= '<p style="font-family:Courier; color:White; font-size: 11px;">
 BANNER= '<p style="font-family:Helvetica Neue; color:Teal; font-size: 55px; line-height:25px;text-align: center;"><b>Foster Care Abuse Risk</b></p>'
 BANNERsmall= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: center;">Risk Assesments</p>'
 BANNERleft= '<p style="font-family:Helvetica Neue; color:Teal; font-size: 55px; line-height:25px;text-align: left;"><b>Foster Care Abuse Risk</b></p>'
-BANNERleftsmall= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: left;">Training wit XGBoost</p>'
+BANNERleftsmall= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: left;">Powered by XGBoost</p>'
 SIDEBARHEADING= '<p style="font-family:Arial; color:Teal; font-size: 20px;text-align: left;"><b>Foster Care Abuse Risk</b></p>'
 
+vis_link_one = '''
+<div class='tableauPlaceholder' id='viz1669351327460' style='position: relative'><noscript><a href='#'><img alt='Total Foster Care Cases Map ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;7Z&#47;7ZMZXM9DR&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='path' value='shared&#47;7ZMZXM9DR' /> <param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;7Z&#47;7ZMZXM9DR&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /></object></div>                
+<script type='text/javascript'>                    
+var divElement = document.getElementById('viz1669351327460');                    
+var vizElement = divElement.getElementsByTagName('object')[0];                    
+if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';
+vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';
+vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='2927px';}                     
+var scriptElement = document.createElement('script');                    
+scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+vizElement.parentNode.insertBefore(scriptElement, vizElement);
+ </script>
+'''
+vis_link_two = ''' <div class='tableauPlaceholder' id='viz1669352278204' style='position: relative'><noscript><a href='#'><img alt=' Neglect Ratio Cases ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;FosterCareNeglectRatioCross-tab-UCBerkeleyMIDSCapstone&#47;CrosstabNumberNeglectcasesMap&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='FosterCareNeglectRatioCross-tab-UCBerkeleyMIDSCapstone&#47;CrosstabNumberNeglectcasesMap' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;FosterCareNeglectRatioCross-tab-UCBerkeleyMIDSCapstone&#47;CrosstabNumberNeglectcasesMap&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes%5C' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1669352278204');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''
+v_3 = '''<div class='tableauPlaceholder' id='viz1669354708856' style='position: relative'><noscript><a href='#'><img alt=' Neglect Ratio Cases Heatmap ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;FosterCareNeglectHeatmap-UCBerkeleyMIDSCapstone&#47;HeatmapNumberNeglectcasesMap2&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='FosterCareNeglectHeatmap-UCBerkeleyMIDSCapstone&#47;HeatmapNumberNeglectcasesMap2' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Fo&#47;FosterCareNeglectHeatmap-UCBerkeleyMIDSCapstone&#47;HeatmapNumberNeglectcasesMap2&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes%5C' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1669354708856');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script> '''
+v4 = '''<div class='tableauPlaceholder' id='viz1669354994885' style='position: relative'><noscript><a href='#'><img alt='Ratio of Foster Cases Compared To Population ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ra&#47;RatioofFosterCasesComparedtoPopulationHeatmap-UCBerkeleyMIDSCapstone&#47;RatioofFosterCasesComparedToPopulation&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='RatioofFosterCasesComparedtoPopulationHeatmap-UCBerkeleyMIDSCapstone&#47;RatioofFosterCasesComparedToPopulation' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Ra&#47;RatioofFosterCasesComparedtoPopulationHeatmap-UCBerkeleyMIDSCapstone&#47;RatioofFosterCasesComparedToPopulation&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes%5C' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1669354994885');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>'''
+
+st.title('FUSA Foster Care Risk Analysis Dashboard')
+components.html(vis_link_one, width=1400, height=600, scrolling=True)
+st.write('Visual one')
+st.write(''' **Situation:** Surveys of child welfare practitioners in the foster care space identified the prevention of abuse and neglect of foster children as a key area for research. In the state of Virginia alone, child welfare practitioners receive nearly 38,000 reports of child abuse a year. Of those 38,000, roughly 10,000 investigations are conducted. Of those 10,000, roughly 3,000 are founded investigations. This means that out of 38,000 reports, there is only a 7.8% ratio of founded investigations.
+
+Task: The availability of data related to foster cases enables our team to develop a trend analysis dashboard and triaging model to aid child welfare practitioners in analysing trends and risk factors associated with abuse.
+
+Action: Our team will use public AFCARS data to visualize trends associated with abuse and neglect in foster cases at the national and state level, in addition to the development of a tree-based classification model for approximated triaging of foster cases in a sandbox environment.
+
+Result: The goal of this project is to develop an easy-to-use educational tool that increases the ratio of founded investigations into physical and sexual abuse in the foster care system. 
+''')
+components.html(vis_link_two,width=1400, height=600, scrolling=True)
+st.write('Visual two')
+components.html(v_3,width=1400, height=600, scrolling=True)
+st.write('Visual Three')
+components.html(v4,width=1400, height=600, scrolling=True)
+st.write('Visual Four')
 @st.cache(allow_output_mutation=True)
 def get_base64_of_bin_file(bin_file):
     with open(bin_file, 'rb') as f:
@@ -87,7 +121,7 @@ def main():
     elif my_page == 'Architecture':
     	cs_architecture()
     elif my_page == 'Performance':
-    	cs_team()
+    	cs_performance()
     return None
 
 # Thanks to streamlitopedia for the following code snippet
@@ -596,23 +630,12 @@ def cs_body():
     return None
     
 def cs_home():
-	st.write(BANNER,unsafe_allow_html=True) 
-	st.write(BANNERsmall,unsafe_allow_html=True) 
-
-	st.session_state['resetter'] = False
-	image = Image.open('image_1.png')
-	st.image(image, width = 1200)
+    st.write('Home Page')
+	#components.html(vis_link_one)
+    
 	
-	st.title('Foster Care Abuse Risk')
-	st.write(''' Situation: Surveys of child welfare practitioners in the foster care space identified the prevention of abuse and neglect of foster children as a key area for research. In the state of Virginia alone, child welfare practitioners receive nearly 38,000 reports of child abuse a year. Of those 38,000, roughly 10,000 investigations are conducted. Of those 10,000, roughly 3,000 are founded investigations. This means that out of 38,000 reports, there is only a 7.8% ratio of founded investigations.
 
-Task: The availability of data related to foster cases enables our team to develop a trend analysis dashboard and triaging model to aid child welfare practitioners in analysing trends and risk factors associated with abuse.
-
-Action: Our team will use public AFCARS data to visualize trends associated with abuse and neglect in foster cases at the national and state level, in addition to the development of a tree-based classification model for approximated triaging of foster cases in a sandbox environment.
-
-Result: The goal of this project is to develop an easy-to-use educational tool that increases the ratio of founded investigations into physical and sexual abuse in the foster care system. 
-''')
-
+    
 
 def cs_architecture():
     st.write(BANNER,unsafe_allow_html=True) 
@@ -625,7 +648,7 @@ def cs_architecture():
     product2, product3 =  st.columns(2)
     product4, product5 = st.columns(2)
     
-def cs_team():
+def cs_performance():
     st.write(BANNERleft,unsafe_allow_html=True) 
     st.write(BANNERleftsmall,unsafe_allow_html=True) 
 
@@ -633,8 +656,8 @@ def cs_team():
     st.title('Model Performance')
     st.text("")
     st.text("")
-    picture_jason = Image.open('./model/learning_rate.png')
-    picture_james = Image.open('./model/cls_report.png')
+    picture_jason = Image.open('learning_rate.png')
+    picture_james = Image.open('cls_report.png')
     
 
 
