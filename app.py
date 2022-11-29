@@ -551,7 +551,7 @@ def cs_body():
                     mods = index%3
                     if mods == 0:
                         with provcols[0]:
-				st.write("Risk: ", str(risk(float(row["Probability of Good Outcome"]*100))))
+			    st.write("Risk: ", str(risk(float(row["Probability of Good Outcome"]*100))))
                         
                             #html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
                             #html = str(index + 1) + ". " + html1
@@ -574,7 +574,7 @@ def cs_body():
                             
                     elif  mods == 1:
                         with provcols[0]:
-				st.write("Risk: ", str(risk(float(row["Probability of Good Outcome"]*100))))
+			    st.write("Risk: ", str(risk(float(row["Probability of Good Outcome"]*100))))
                              #html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
                             #html = str(index + 1) + ". " + html1
                             #html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
@@ -597,7 +597,7 @@ def cs_body():
                             
                     elif mods == 2: 
                         with provcols[0]:
-				st.write("Risk: ", str(risk(float(row["Probability of Good Outcome"]*100))))
+			    st.write("Risk: ", str(risk(float(row["Probability of Good Outcome"]*100))))
                             #html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
                             #html = str(index + 1) + ". " + html1
                             #html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
