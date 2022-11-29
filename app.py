@@ -537,77 +537,79 @@ def cs_body():
                 for index, row in final_providers.iterrows():
                     def risk(n):
                         if n > 8.0:
-                            return 'Very Low Risk'
+                            return 'Low'
                         if n > 5.0:
-                            return 'Moderate Risk'
+                            return 'Medium'
                         if n < 4.0:
-                            return 'Moderate Risk'
+                            return 'Medium'
                         if n > 3.0:
-                            return 'Moderate Risk'
+                            return 'Medium'
                         if n >= 2.0:
-                            return 'High Risk'
+                            return 'High'
                         if n < 2.0:
                             return 'High Risk'
                     mods = index%3
                     if mods == 0:
                         with provcols[0]:
                         
-                            html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
-                            html = str(index + 1) + ". " + html1
-                            html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
+                            #html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
+                            #html = str(index + 1) + ". " + html1
+                            #html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
                             #html = html + '<br>' + 'Number of Children Fostered: ' + str(int(round(row["PROVIDER_NUM_PREV_PLACEMENTS"])))
-                            html = html + '<br>' + 'Number of Children Fostered: ' + html1
-                            html = html + '<br>' + "Provider Strengths: " + '<b>' + row["FLAGS"] + '</b>'
-                            html1 = "Unknown" if np.isnan(round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)) else round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)
-                            html2 = html + '<br>' + "Track Record for reunification/adoption/guardianship: " + str(html1) + '%'
-                            html = html2 + '<br>' + "Match Rating: " + str(round(row.RATING,2)) + "/5"
-                            html = html + '<br>'+ "Estimated Stay Duration: " + '<b>' + str(int(round(row["Predicted Duration"],0))) + '</b>' + " days"
-                            html = html + '<br>'+ "Probability of Positive Outcome: " + '<b>' + str(round(row["Probability of Good Outcome"]*100,2)) + "%" + '</b>'
+                            #html = html + '<br>' + 'Number of Children Fostered: ' + html1
+                            #html = html + '<br>' + "Provider Strengths: " + '<b>' + row["FLAGS"] + '</b>'
+                            #html1 = "Unknown" if np.isnan(round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)) else round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)
+                            #html2 = html + '<br>' + "Track Record for reunification/adoption/guardianship: " + str(html1) + '%'
+                            #html = html2 + '<br>' + "Match Rating: " + str(round(row.RATING,2)) + "/5"
+                            #html = html + '<br>'+ "Estimated Stay Duration: " + '<b>' + str(int(round(row["Predicted Duration"],0))) + '</b>' + " days"
+                            #html = html + '<br>'+ "Probability of Positive Outcome: " + '<b>' + str(round(row["Probability of Good Outcome"]*100,2)) + "%" + '</b>'
                             html = html + '<br>'+ "Risk: " + '<b>' + str(risk(float(row["Probability of Good Outcome"]*100)))  + '</b>' 
                             st.write(HTML_WRAPPER1.format(html), unsafe_allow_html=True)
-                            button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
-                            if button_dict2["string{}".format(index)]:
-                                DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
+                            #button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
+                            #if button_dict2["string{}".format(index)]:
+                                #DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
                             st.markdown("---")
                             
                     elif  mods == 1:
-                        with provcols[1]:
-                            html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
-                            html = str(index + 1) + ". " + html1
-                            html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
+                        with provcols[0]:
+                             #html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
+                            #html = str(index + 1) + ". " + html1
+                            #html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
                             #html = html + '<br>' + 'Number of Children Fostered: ' + str(int(round(row["PROVIDER_NUM_PREV_PLACEMENTS"])))
-                            html = html + '<br>' + 'Number of Children Fostered: ' + html1
-                            html = html + '<br>' + "Provider Strengths: " + '<b>' + row["FLAGS"] + '</b>'
-                            html1 = "Unknown" if np.isnan(round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)) else round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)
-                            html2 = html + '<br>' + "Track Record for reunification/adoption/guardianship: " + str(html1) + '%'
-                            html = html2 + '<br>' + "Match Rating: " + str(round(row.RATING,2)) + "/5"
-                            html = html + '<br>'+ "Estimated Stay Duration: " + '<b>' + str(int(round(row["Predicted Duration"],0))) + '</b>' + " days"
-                            html = html + '<br>'+ "Probability of Positive Outcome: " + '<b>' + str(round(row["Probability of Good Outcome"]*100,2)) + "%" + '</b>'
+                            #html = html + '<br>' + 'Number of Children Fostered: ' + html1
+                            #html = html + '<br>' + "Provider Strengths: " + '<b>' + row["FLAGS"] + '</b>'
+                            #html1 = "Unknown" if np.isnan(round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)) else round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)
+                            #html2 = html + '<br>' + "Track Record for reunification/adoption/guardianship: " + str(html1) + '%'
+                            #html = html2 + '<br>' + "Match Rating: " + str(round(row.RATING,2)) + "/5"
+                            #html = html + '<br>'+ "Estimated Stay Duration: " + '<b>' + str(int(round(row["Predicted Duration"],0))) + '</b>' + " days"
+                            #html = html + '<br>'+ "Probability of Positive Outcome: " + '<b>' + str(round(row["Probability of Good Outcome"]*100,2)) + "%" + '</b>'
                             html = html + '<br>'+ "Risk: " + '<b>' + str(risk(float(row["Probability of Good Outcome"]*100)))  + '</b>' 
-                            st.write(HTML_WRAPPER2.format(html), unsafe_allow_html=True)
-                            button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
-                            if button_dict2["string{}".format(index)]:
-                                DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
+                            st.write(HTML_WRAPPER1.format(html), unsafe_allow_html=True)
+                            #button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
+                            #if button_dict2["string{}".format(index)]:
+                                #DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
+                            st.markdown("---")
                             st.markdown("---")
                             
                     elif mods == 2: 
-                        with provcols[2]:
-                            html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
-                            html = str(index + 1) + ". " + html1
-                            html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
+                        with provcols[0]:
+                            #html1 = "Unknown" if type(row["PROVIDER_NAME"])==float else '<em> <b>'+ row["PROVIDER_NAME"] + '</em> </b>'+ '    (Provider ID: ' + str(row["PROVIDER_ID"]) + ')'
+                            #html = str(index + 1) + ". " + html1
+                            #html1 = "Unknown" if np.isnan(row["PROVIDER_NUM_PREV_PLACEMENTS"]) else str(round(row["PROVIDER_NUM_PREV_PLACEMENTS"]))
                             #html = html + '<br>' + 'Number of Children Fostered: ' + str(int(round(row["PROVIDER_NUM_PREV_PLACEMENTS"])))
-                            html = html + '<br>' + 'Number of Children Fostered: ' + html1
-                            html = html + '<br>' + "Provider Strengths: " + '<b>' + row["FLAGS"] + '</b>'
-                            html1 = "Unknown" if np.isnan(round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)) else round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)
-                            html2 = html + '<br>' + "Track Record for reunification/adoption/guardianship: " + str(html1) + '%'
-                            html = html2 + '<br>' + "Match Rating: " + str(round(row.RATING,2)) + "/5"
-                            html = html + '<br>'+ "Estimated Stay Duration: " + '<b>' + str(int(round(row["Predicted Duration"],0))) + '</b>' + " days"
-                            html = html + '<br>'+ "Probability of Positive Outcome: " + '<b>' + str(round(row["Probability of Good Outcome"]*100,2)) + "%" + '</b>'
-                            html = html + '<br>'+ "Risk: " + '<b>' + str(risk(float(row["Probability of Good Outcome"]*100)))  + '</b>'
-                            st.write(HTML_WRAPPER3.format(html), unsafe_allow_html=True)
-                            button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
-                            if button_dict2["string{}".format(index)]:
-                                DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
+                            #html = html + '<br>' + 'Number of Children Fostered: ' + html1
+                            #html = html + '<br>' + "Provider Strengths: " + '<b>' + row["FLAGS"] + '</b>'
+                            #html1 = "Unknown" if np.isnan(round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)) else round(row["PROVIDER_NUM_PREV_PLACEMENTS_GOOD_PERC"]*100,1)
+                            #html2 = html + '<br>' + "Track Record for reunification/adoption/guardianship: " + str(html1) + '%'
+                            #html = html2 + '<br>' + "Match Rating: " + str(round(row.RATING,2)) + "/5"
+                            #html = html + '<br>'+ "Estimated Stay Duration: " + '<b>' + str(int(round(row["Predicted Duration"],0))) + '</b>' + " days"
+                            #html = html + '<br>'+ "Probability of Positive Outcome: " + '<b>' + str(round(row["Probability of Good Outcome"]*100,2)) + "%" + '</b>'
+                            html = html + '<br>'+ "Risk: " + '<b>' + str(risk(float(row["Probability of Good Outcome"]*100)))  + '</b>' 
+                            st.write(HTML_WRAPPER1.format(html), unsafe_allow_html=True)
+                            #button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
+                            #if button_dict2["string{}".format(index)]:
+                                #DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
+                            st.markdown("---")t_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
                             st.markdown("---")
                         
 #                button_dict = {}
