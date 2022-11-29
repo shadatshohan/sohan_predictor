@@ -568,7 +568,7 @@ def cs_body():
                             #button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
                             #if button_dict2["string{}".format(index)]:
                                 #DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
-                            st.markdown("---")
+                            #st.markdown("---")
                             
                     elif  mods == 1:
                         with provcols[0]:
@@ -588,8 +588,8 @@ def cs_body():
                             #button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
                             #if button_dict2["string{}".format(index)]:
                                 #DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
-                            st.markdown("---")
-                            st.markdown("---")
+                            #st.markdown("---")
+                            ##st.markdown("---")
                             
                     elif mods == 2: 
                         with provcols[0]:
@@ -609,8 +609,8 @@ def cs_body():
                             #button_dict2["string{}".format(index)] = st.button("Risk Assesment with Providers", key = str(index))
                             #if button_dict2["string{}".format(index)]:
                                 #DurationModel.get_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
-                            st.markdown("---")t_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
-                            st.markdown("---")
+                            #st.markdown("---")t_probability_distribution(placements_to_predict.iloc[[index]], probability_model)
+                            #st.markdown("---")
                         
 #                button_dict = {}
 #                for index, row in final_providers.iterrows():
